@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-space: #070b19;
+    --navy-deep: #0a0f24;
+    --card-bg: rgba(13, 20, 43, 0.75);
+    --border-glow: rgba(56, 189, 248, 0.25);
+  }
+
+  body {
+    background-color: #060913;
+    color: #e2e8f0;
+    overflow: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* Custom glowing and glassmorphic utilities */
+.glass-panel {
+  background: rgba(10, 16, 37, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(79, 120, 200, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-subtle {
+  background: rgba(14, 23, 53, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 120, 200, 0.15);
+}
+
+.glow-liza {
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.45), 0 0 60px rgba(168, 85, 247, 0.25);
+}
+
+.glow-blue {
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 16, 37, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 120, 200, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(125, 211, 252, 0.6);
+}
+
+/* Cyber grid background animation */
+.cyber-grid {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.2) 0%, transparent 70%),
+    linear-gradient(to right, rgba(30, 41, 59, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Pulsing aura */
+@keyframes auraPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+.animate-aura {
+  animation: auraPulse 4s ease-in-out infinite;
+}
+
+/* Markdown styling in AI chat */
+.prose-dark p {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+.prose-dark p:last-child {
+  margin-bottom: 0;
+}
+.prose-dark ul, .prose-dark ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.prose-dark li {
+  margin-bottom: 0.25rem;
+}
+.prose-dark strong {
+  color: #38bdf8;
+  font-weight: 600;
+}
+.prose-dark code {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  color: #f472b6;
+}

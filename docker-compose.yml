@@ -1,0 +1,17 @@
+services:
+  family-mind-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: family-mind-ai
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:/app/data/family.db
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.0-flash}
+      - PORT=3000
+      - NODE_ENV=production
+    volumes:
+      - ./data:/app/data

@@ -1,0 +1,45 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Person {
+  id              String         @id @default(uuid())
+  name            String
+  birthDate       DateTime?
+  relation        String         // "девушка", "мама", "папа", "брат", "бабушка", etc.
+  hobbies         String         @default("[]") // JSON string of string[]
+  preferences     String         @default("[]") // JSON string of string[]
+  notes           String?
+  avatarUrl       String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  sourceRelations Relationship[] @relation("SourceRelations")
+  targetRelations Relationship[] @relation("TargetRelations")
+}
+
+model Relationship {
+  id        String   @id @default(uuid())
+  sourceId  String
+  targetId  String
+  label     String   // "мама", "папа", "девушка", "брат", etc.
+  createdAt DateTime @default(now())
+
+  source    Person   @relation("SourceRelations", fields: [sourceId], references: [id], onDelete: Cascade)
+  target    Person   @relation("TargetRelations", fields: [targetId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceId, targetId, label])
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  role      String   // "user" | "assistant" | "system"
+  content   String
+  toolCalls String?  // Optional JSON metadata for actions taken
+  createdAt DateTime @default(now())
+}
